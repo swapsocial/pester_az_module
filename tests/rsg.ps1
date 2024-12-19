@@ -1,5 +1,5 @@
 Import-Module -Name Az.Resources
-$subscriptionId = "8dd8b7ef-db34-43f4-bbce-997ece61cb8d"
+$subscriptionId = "0b7e0b83-0035-48fe-92fe-bf1143f2e715"
 Select-AzSubscription -Subscription $subscriptionId
 # Log environment variables
 Write-Output "-----------------------------------------------------------------------"
@@ -12,16 +12,19 @@ Describe 'Azure VM Tests' {
         $vm | Should -Not -BeNullOrEmpty
     }
 
-    # Test 2: VM should be in running state
+# Test 2: VM should be in running state
     It 'VM should be in running state' {
+        # Get VM details
         $vm = Get-AzVM -ResourceGroupName 'YourResourceGroupName' -Name 'YourVMName'
-        $vm.Statuses[1].Code | Should -Be 'PowerState/running'
+        $status = $vm.Statuses | Where-Object { $_.Code -eq 'PowerState/running' }
+        $status | Should -Not -BeNullOrEmpty
     }
+}
 
     # Test 3: VM should have correct size
     It 'VM should have correct size' {
         $vm = Get-AzVM -ResourceGroupName 'YourResourceGroupName' -Name 'YourVMName'
-        $vm.HardwareProfile.VmSize | Should -Be 'Standard_DS1_v2'  # Change this to your expected size
+        $vm.HardwareProfile.VmSize | Should -Be 'Standard_B1s'  # Change this to your expected size
     }
 
 }
