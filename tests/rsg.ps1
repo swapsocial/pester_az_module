@@ -13,9 +13,9 @@ Describe 'Azure VM Tests' {
 
     # Test 2: VM should be in running state
     It 'VM should be in running state' {
-        # Get VM details
         $vm = Get-AzVM -ResourceGroupName 'YourResourceGroupName' -Name 'YourVMName'
-        $status = $vm.Statuses | Where-Object { $_.Code -eq 'PowerState/running' }
+        Write-Host "VM Statuses: $($vm.Statuses | Select-Object Code)"
+        $status = $vm.Statuses | Where-Object { $_.Code -match 'PowerState/running' }
         $status | Should -Not -BeNullOrEmpty
     }
 
