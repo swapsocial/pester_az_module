@@ -1,3 +1,5 @@
+Import-Module -Name Az
+
 Describe "Check if Resource Group exists" {
 
     $resourceGroupName = "NetworkWatcherRG"
