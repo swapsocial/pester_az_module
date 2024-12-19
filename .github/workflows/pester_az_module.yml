@@ -28,11 +28,6 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         enable-AzPSSession: true
     
-    # Enable Azure PowerShell session (if you specifically need it)
-    - name: Enable Azure PowerShell session
-      run: |
-        pwsh -Command "Enable-AzPSSession"
-
     # Install Pester module
     - name: Install Pester
       run: |
