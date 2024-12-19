@@ -29,8 +29,9 @@ jobs:
         enable-AzPSSession: true
     
     # Install Pester module
-    - name: Install Pester
+    - name: Install Pester and Az modules
       run: |
+        pwsh -Command "Install-Module -Name Az -Force -Scope CurrentUser"
         pwsh -Command "Install-Module -Name Pester -Force -Scope CurrentUser"
 
     # Run Pester Tests
