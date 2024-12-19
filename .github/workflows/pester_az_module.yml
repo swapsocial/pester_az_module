@@ -26,6 +26,11 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     
+    # Enable Azure PowerShell session (if you specifically need it)
+    - name: Enable Azure PowerShell session
+      run: |
+        pwsh -Command "Enable-AzPSSession"
+
     # Install Pester module
     - name: Install Pester
       run: |
@@ -34,4 +39,4 @@ jobs:
     # Run Pester Tests
     - name: Run Pester Tests
       run: |
-        pwsh -Command "Invoke-Pester -Script ./tests/rsg.ps1 -Verbose" 
+        pwsh -Command "Invoke-Pester -Script ./tests/rsg.ps1 -Verbose"
