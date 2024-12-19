@@ -11,7 +11,7 @@ permissions:
   contents: read
   
 jobs:
-  pester-test:
+  pester-iq-test:
     runs-on: windows-latest
     
     steps:
@@ -31,7 +31,7 @@ jobs:
     # Install Pester module
     - name: Install Pester and Az modules
       run: |
-        pwsh -Command "Install-Module -Name Az -Force -Scope CurrentUser"
+        pwsh -Command "Install-Module -Name Az -Force -Scope CurrentUser -AllowClobber"
         pwsh -Command "Install-Module -Name Pester -Force -Scope CurrentUser"
 
     # Run Pester Tests
