@@ -5,7 +5,10 @@ on:
   push:
     branches:
       - main
-
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   pester-test:
     runs-on: windows-latest
@@ -19,8 +22,8 @@ jobs:
     - name: Authenticate to Azure with Federated Credentials
       uses: azure/login@v1
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}  # Set the client ID in secrets, this is for your Azure App Registration
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}  # Set the tenant ID in secrets
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}  
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     
     # Install Pester module
